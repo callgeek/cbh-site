@@ -1,16 +1,534 @@
 ---
+import Layout from "../layouts/Layout.astro";
 
+const content = {
+  company: {
+    name: "CBH Construction",
+    phone: "(416) 555-0123",
+    email: "info@cbhconstruction.ca"
+  },
+  header: {
+    nav: [
+      { text: "Services", href: "#services" },
+      { text: "Process", href: "#process" },
+      { text: "Projects", href: "#projects" },
+      { text: "Testimonials", href: "#testimonials" },
+      { text: "FAQ", href: "#faq" },
+      { text: "Contact", href: "#contact" }
+    ],
+    cta: "Request a Quote"
+  },
+  hero: {
+    headline: "High-Quality Residential Construction You Can Trust",
+    subheadline: "Transforming homes across the GTA with expert craftsmanship, transparent communication, and reliable timelines. From major renovations to complete new builds, we bring your vision to life.",
+    ctas: {
+      primary: "Request a Quote",
+      secondary: "View Services"
+    },
+    trustBullets: [
+      "Fully Insured & Licensed",
+      "Permits Handled for You",
+      "Clear Timelines & Communication"
+    ]
+  },
+  services: {
+    title: "Our Core Services",
+    subtitle: "Expert construction services tailored to your home and vision",
+    items: [
+      {
+        title: "Major Renovations",
+        bullets: [
+          "Complete home transformations",
+          "Kitchen and bathroom overhauls",
+          "Structural improvements and updates"
+        ]
+      },
+      {
+        title: "Additions",
+        bullets: [
+          "Seamless home extensions",
+          "Second story additions",
+          "Sunrooms and enclosed spaces"
+        ]
+      },
+      {
+        title: "New Builds",
+        bullets: [
+          "Custom home construction",
+          "Design-build services",
+          "Turnkey project delivery"
+        ]
+      },
+      {
+        title: "Underpinning + Complete Basement Renovations",
+        bullets: [
+          "Foundation lowering and strengthening",
+          "Full basement finishing",
+          "Legal basement suites"
+        ]
+      }
+    ]
+  },
+  process: {
+    title: "Our Process",
+    subtitle: "A clear, transparent approach from start to finish",
+    steps: [
+      {
+        number: "01",
+        title: "Discovery",
+        description: "We listen to your vision, assess your space, and discuss your goals, timeline, and budget."
+      },
+      {
+        number: "02",
+        title: "Estimate",
+        description: "Receive a detailed, transparent estimate with clear timelines and no hidden costs."
+      },
+      {
+        number: "03",
+        title: "Build",
+        description: "Our skilled team executes with precision, keeping you informed every step of the way."
+      },
+      {
+        number: "04",
+        title: "Handover",
+        description: "Final walkthrough, documentation, and ongoing support to ensure your complete satisfaction."
+      }
+    ]
+  },
+  projects: {
+    title: "Recent Projects",
+    subtitle: "Quality craftsmanship in every detail",
+    items: [
+      { caption: "Complete Home Renovation - Toronto" },
+      { caption: "Second Story Addition - Mississauga" },
+      { caption: "Custom New Build - Oakville" },
+      { caption: "Basement Underpinning & Finishing - Etobicoke" },
+      { caption: "Kitchen & Bath Renovation - North York" },
+      { caption: "Sunroom Addition - Scarborough" }
+    ]
+  },
+  testimonials: {
+    title: "What Our Clients Say",
+    subtitle: "Trusted by homeowners across the GTA",
+    items: [
+      {
+        quote: "CBH Construction transformed our entire main floor. The team was professional, kept us informed throughout, and the quality exceeded our expectations. Highly recommend!",
+        author: "Jennifer M.",
+        location: "Toronto"
+      },
+      {
+        quote: "We added a second story to our home and couldn't be happier. The process was smooth, permits were handled seamlessly, and the finished result is beautiful.",
+        author: "David R.",
+        location: "Mississauga"
+      },
+      {
+        quote: "Our basement underpinning and renovation was a big project, but CBH made it stress-free. Clear communication, on-time delivery, and excellent craftsmanship.",
+        author: "Sarah L.",
+        location: "Oakville"
+      }
+    ]
+  },
+  faq: {
+    title: "Frequently Asked Questions",
+    subtitle: "Common questions about our construction services",
+    items: [
+      {
+        question: "Do you handle building permits?",
+        answer: "Yes, we handle all permit applications and approvals for your project. We work with local municipalities to ensure everything is properly documented and approved before work begins."
+      },
+      {
+        question: "How long do typical projects take?",
+        answer: "Timelines vary by project scope. A major renovation typically takes 8-12 weeks, additions 12-16 weeks, and new builds 6-9 months. We provide detailed timelines in your estimate and keep you updated throughout the process."
+      },
+      {
+        question: "What's included in your estimates?",
+        answer: "Our estimates include all materials, labor, permits, and project management. We're transparent about costs upfront—no hidden fees. We'll also discuss potential upgrades or changes that might affect the budget."
+      },
+      {
+        question: "Can we live in our home during renovations?",
+        answer: "In many cases, yes. For major renovations, we'll discuss the best approach for your family. Some projects may require temporary relocation, while others can be completed with you in residence. We'll work with you to minimize disruption."
+      },
+      {
+        question: "Do you work with engineers and architects?",
+        answer: "Absolutely. For structural work, additions, and new builds, we coordinate with licensed engineers and architects as needed. We have trusted partners we work with regularly, or we can work with your existing team."
+      },
+      {
+        question: "What kind of warranty do you provide?",
+        answer: "We stand behind our work with a comprehensive warranty on craftsmanship and materials. Specific warranty terms are outlined in your contract, and we're always available to address any concerns after project completion."
+      }
+    ]
+  },
+  contact: {
+    title: "Get Started Today",
+    subtitle: "Request a free consultation and detailed estimate",
+    note: "We'll reply within 1 business day.",
+    form: {
+      name: { label: "Name", placeholder: "Your full name" },
+      email: { label: "Email", placeholder: "your.email@example.com" },
+      phone: { label: "Phone", placeholder: "(416) 555-0123" },
+      projectType: {
+        label: "Project Type",
+        options: [
+          "Select a project type",
+          "Major Renovation",
+          "Addition",
+          "New Build",
+          "Underpinning & Basement",
+          "Other"
+        ]
+      },
+      message: { label: "Message", placeholder: "Tell us about your project..." },
+      submit: "Request a Quote"
+    }
+  },
+  footer: {
+    serviceAreas: "Serving homeowners throughout the Greater Toronto Area including Toronto, Mississauga, Oakville, Etobicoke, North York, Scarborough, and surrounding communities.",
+    copyright: "© 2024 CBH Construction. All rights reserved."
+  }
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <!-- Sticky Header -->
+  <header id="top" class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm">
+    <nav class="mx-auto max-w-7xl px-6 lg:px-8" aria-label="Main navigation">
+      <div class="flex h-20 items-center justify-between">
+        <a href="#top" class="text-2xl font-bold text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900">
+          {content.company.name}
+        </a>
+        <div class="hidden lg:flex lg:items-center lg:gap-x-8">
+          {content.header.nav.map((item) => (
+            <a
+              href={item.href}
+              class="text-sm font-medium text-slate-700 transition hover:text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
+            >
+              {item.text}
+            </a>
+          ))}
+          <a
+            href="#contact"
+            class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
+          >
+            {content.header.cta}
+          </a>
+        </div>
+        <div class="lg:hidden">
+          <a
+            href="#contact"
+            class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
+          >
+            {content.header.cta}
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-slate-50 via-white to-slate-50">
+    <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center">
+        <h1 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          {content.hero.headline}
+        </h1>
+        <p class="mt-6 text-lg leading-8 text-slate-600 sm:text-xl">
+          {content.hero.subheadline}
+        </p>
+        <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a
+            href="#contact"
+            class="rounded-lg bg-slate-900 px-6 py-3 text-base font-semibold text-white shadow-lg transition hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
+          >
+            {content.hero.ctas.primary}
+          </a>
+          <a
+            href="#services"
+            class="rounded-lg border-2 border-slate-900 px-6 py-3 text-base font-semibold text-slate-900 transition hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
+          >
+            {content.hero.ctas.secondary}
+          </a>
+        </div>
+        <div class="mt-12 flex flex-wrap items-center justify-center gap-8 text-sm text-slate-700">
+          {content.hero.trustBullets.map((bullet) => (
+            <div class="flex items-center gap-2">
+              <svg class="h-5 w-5 text-slate-900" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>{bullet}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="bg-white py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          {content.services.title}
+        </h2>
+        <p class="mt-2 text-lg leading-8 text-slate-600">
+          {content.services.subtitle}
+        </p>
+      </div>
+      <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+        {content.services.items.map((service) => (
+          <div class="flex flex-col rounded-xl border border-slate-200 bg-white p-8 shadow-sm transition hover:shadow-md">
+            <h3 class="text-xl font-semibold text-slate-900">{service.title}</h3>
+            <ul class="mt-4 space-y-2">
+              {service.bullets.map((bullet) => (
+                <li class="flex items-start gap-3 text-slate-600">
+                  <svg class="mt-0.5 h-5 w-5 flex-shrink-0 text-slate-900" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="process" class="bg-slate-50 py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          {content.process.title}
+        </h2>
+        <p class="mt-2 text-lg leading-8 text-slate-600">
+          {content.process.subtitle}
+        </p>
+      </div>
+      <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-4">
+        {content.process.steps.map((step) => (
+          <div class="flex flex-col">
+            <div class="text-4xl font-bold text-slate-300">{step.number}</div>
+            <h3 class="mt-4 text-xl font-semibold text-slate-900">{step.title}</h3>
+            <p class="mt-2 text-slate-600">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="bg-white py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          {content.projects.title}
+        </h2>
+        <p class="mt-2 text-lg leading-8 text-slate-600">
+          {content.projects.subtitle}
+        </p>
+      </div>
+      <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        {content.projects.items.map((project) => (
+          <div class="group relative overflow-hidden rounded-xl">
+            <div class="aspect-[4/3] bg-gradient-to-br from-slate-200 via-slate-100 to-slate-200 transition group-hover:from-slate-300 group-hover:via-slate-200 group-hover:to-slate-300"></div>
+            <div class="absolute inset-0 flex items-end bg-gradient-to-t from-slate-900/80 to-transparent p-6">
+              <p class="text-sm font-medium text-white">{project.caption}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="bg-slate-50 py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          {content.testimonials.title}
+        </h2>
+        <p class="mt-2 text-lg leading-8 text-slate-600">
+          {content.testimonials.subtitle}
+        </p>
+      </div>
+      <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        {content.testimonials.items.map((testimonial) => (
+          <div class="flex flex-col rounded-xl bg-white p-8 shadow-sm">
+            <p class="text-slate-900">"{testimonial.quote}"</p>
+            <div class="mt-6 border-t border-slate-200 pt-6">
+              <p class="font-semibold text-slate-900">{testimonial.author}</p>
+              <p class="text-sm text-slate-600">{testimonial.location}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="bg-white py-24 sm:py-32">
+    <div class="mx-auto max-w-3xl px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          {content.faq.title}
+        </h2>
+        <p class="mt-2 text-lg leading-8 text-slate-600">
+          {content.faq.subtitle}
+        </p>
+      </div>
+      <div class="mx-auto mt-16 space-y-4">
+        {content.faq.items.map((item) => (
+          <details class="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:shadow-md">
+            <summary class="flex cursor-pointer items-center justify-between text-lg font-semibold text-slate-900 list-none">
+              <span>{item.question}</span>
+              <svg class="h-5 w-5 flex-shrink-0 text-slate-500 transition group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+              </svg>
+            </summary>
+            <p class="mt-4 text-slate-600">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="bg-slate-50 py-24 sm:py-32">
+    <div class="mx-auto max-w-3xl px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          {content.contact.title}
+        </h2>
+        <p class="mt-2 text-lg leading-8 text-slate-600">
+          {content.contact.subtitle}
+        </p>
+        <p class="mt-4 text-sm text-slate-500">
+          {content.contact.note}
+        </p>
+      </div>
+      <form class="mx-auto mt-16 space-y-6" action="#" method="POST">
+        <div>
+          <label for="name" class="block text-sm font-medium text-slate-900">
+            {content.contact.form.name.label}
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            placeholder={content.contact.form.name.placeholder}
+            class="mt-2 block w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900"
+          />
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-slate-900">
+            {content.contact.form.email.label}
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder={content.contact.form.email.placeholder}
+            class="mt-2 block w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900"
+          />
+        </div>
+        <div>
+          <label for="phone" class="block text-sm font-medium text-slate-900">
+            {content.contact.form.phone.label}
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            required
+            placeholder={content.contact.form.phone.placeholder}
+            class="mt-2 block w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900"
+          />
+        </div>
+        <div>
+          <label for="projectType" class="block text-sm font-medium text-slate-900">
+            {content.contact.form.projectType.label}
+          </label>
+          <select
+            id="projectType"
+            name="projectType"
+            required
+            class="mt-2 block w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900"
+          >
+            {content.contact.form.projectType.options.map((option) => (
+              <option value={option === "Select a project type" ? "" : option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label for="message" class="block text-sm font-medium text-slate-900">
+            {content.contact.form.message.label}
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            required
+            placeholder={content.contact.form.message.placeholder}
+            class="mt-2 block w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm placeholder:text-slate-400 focus:border-slate-900 focus:outline-none focus:ring-2 focus:ring-slate-900"
+          ></textarea>
+        </div>
+        <div>
+          <button
+            type="submit"
+            class="w-full rounded-lg bg-slate-900 px-6 py-3 text-base font-semibold text-white shadow-lg transition hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
+          >
+            {content.contact.form.submit}
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+      <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div>
+          <h3 class="text-lg font-bold text-slate-900">{content.company.name}</h3>
+          <p class="mt-4 text-sm text-slate-600">
+            {content.footer.serviceAreas}
+          </p>
+        </div>
+        <div>
+          <h3 class="text-sm font-semibold text-slate-900">Contact</h3>
+          <ul class="mt-4 space-y-2 text-sm text-slate-600">
+            <li>
+              <a href={`tel:${content.company.phone}`} class="transition hover:text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900">
+                {content.company.phone}
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${content.company.email}`} class="transition hover:text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900">
+                {content.company.email}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-sm font-semibold text-slate-900">Quick Links</h3>
+          <ul class="mt-4 space-y-2">
+            {content.header.nav.map((item) => (
+              <li>
+                <a href={item.href} class="text-sm text-slate-600 transition hover:text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900">
+                  {item.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div class="mt-12 border-t border-slate-200 pt-8">
+        <p class="text-sm text-slate-600">{content.footer.copyright}</p>
+      </div>
+    </div>
+  </footer>
+</Layout>
