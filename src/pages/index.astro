@@ -162,6 +162,7 @@ const content = {
     title: "Get Started Today",
     subtitle: "Request a free consultation and detailed estimate",
     note: "We'll reply within 1 business day.",
+    formEndpoint: "https://usebasin.com/f/125781b28b32",
     form: {
       name: { label: "Name", placeholder: "Your full name" },
       email: { label: "Email", placeholder: "your.email@example.com" },
@@ -406,7 +407,7 @@ const content = {
           {content.contact.note}
         </p>
       </div>
-      <form class="mx-auto mt-16 space-y-6" action="#" method="POST">
+      <form class="mx-auto mt-16 space-y-6" action={content.contact.formEndpoint} method="POST">
         <div>
           <label for="name" class="block text-sm font-medium text-slate-900">
             {content.contact.form.name.label}
